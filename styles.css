@@ -1,0 +1,410 @@
+:root {
+  color-scheme: light;
+
+  --bg: #ffffff;
+  --text: #111111;
+  --muted: #666666;
+  --danger: #b00000;
+
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.5 var(--font);
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- page ---------- */
+
+.page {
+  width: min(860px, 100%);
+  margin: 0 auto;
+  padding: 28px 20px 24px;
+}
+
+.hero {
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- disclaimer ---------- */
+
+.disclaimer {
+  width: min(860px, 100%);
+  margin: 0 auto;
+  padding: 0 20px 40px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+/* Match the tables' width so the footer ends with the rest of the content. */
+.disclaimer p {
+  width: 89%;
+}
+
+/* ---------- section headings ---------- */
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.section-head h2 {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* ---------- inventory ---------- */
+
+.inventory {
+  margin-bottom: 26px;
+}
+
+.inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 36px;
+  row-gap: 16px;
+  /* Match the tables' first-cell padding so the blocks line up. */
+  margin-left: 5px;
+}
+
+.group {
+  min-width: 0;
+}
+
+.group--funds {
+  grid-column: 1 / -1;
+}
+
+.group--funds .inv-row label {
+  font-weight: 600;
+}
+
+.funds-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 36px;
+}
+
+.group h3 {
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.inv-row {
+  display: grid;
+  grid-template-columns: 120px 120px 42px;
+  align-items: center;
+  justify-content: start;
+  gap: 8px;
+  padding: 3px 0;
+}
+
+.inv-row label {
+  font-size: 13px;
+  text-align: left;
+}
+
+.inv-row input {
+  text-align: right;
+}
+
+.mult {
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.group-total {
+  display: grid;
+  grid-template-columns: 120px 120px minmax(42px, max-content);
+  gap: 1px 8px;
+  margin-top: 10px;
+  padding-top: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.group-total--wide {
+  grid-template-columns: 158px 82px minmax(36px, max-content);
+}
+
+.group-total strong {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.total-number {
+  grid-column: 2;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.total-unit {
+  grid-column: 3;
+  white-space: nowrap;
+}
+
+input[inputmode="numeric"] {
+  width: 100%;
+  min-width: 0;
+  height: 28px;
+  padding: 3px 7px;
+  font-size: 13px;
+  color: var(--text);
+  background: #ffffff;
+  border: 1px solid #b5b5b5;
+  border-radius: 2px;
+}
+
+input[inputmode="numeric"]:focus {
+  outline: 2px solid var(--text);
+  outline-offset: 1px;
+  border-color: var(--text);
+}
+
+input.is-invalid {
+  border-color: var(--danger);
+  background: #fff5f5;
+}
+
+/* ---------- results ---------- */
+
+.results {
+  margin-bottom: 26px;
+  padding-top: 20px;
+}
+
+.tiers {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-top: 12px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+.tier-table {
+  table-layout: fixed;
+  width: 89%;
+  /* Columns stay readable; .table-wrap scrolls if the table gets wider. */
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.tier-table th,
+.tier-table td {
+  padding: 4px 5px;
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.tier-table th:first-child {
+  width: 20%;
+  padding-right: 16px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: normal;
+  text-transform: none;
+  text-align: left;
+  color: var(--muted);
+}
+
+.tier-table thead th:not(:first-child) {
+  width: 20%;
+  font-variant-numeric: tabular-nums;
+}
+
+.tier-table thead th {
+  padding-bottom: 13px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.tier-table tbody th {
+  text-align: left;
+}
+
+.row--stat th,
+.row--stat td {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.row--limit th,
+.row--limit td {
+  padding-top: 13px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.row--max td{
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.tier-table .row--tier th {
+  width: auto;
+  padding: 14px 5px 2px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.tier-table tbody:first-of-type > .row--tier th {
+  padding-top: 0;
+}
+
+/* ---------- cost requirements ---------- */
+
+.costs {
+  margin-top: 28px;
+}
+
+.costs .table-wrap {
+  margin-top: 12px;
+}
+
+.badge {
+  font-weight: 600;
+}
+
+.noscript {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  font-size: 13px;
+  color: var(--danger);
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 760px) {
+  .inventory-grid {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .funds-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .page {
+    padding: 20px 14px 24px;
+  }
+
+  .disclaimer {
+    padding: 0 14px 32px;
+  }
+
+  .inv-row {
+    grid-template-columns: 120px 120px 36px;
+    gap: 6px;
+  }
+
+  .group-total {
+    grid-template-columns: 120px 120px minmax(36px, max-content);
+    gap: 1px 6px;
+  }
+
+  .group-total--wide {
+    grid-template-columns: 158px 82px minmax(36px, max-content);
+  }
+}
+
+/* ---------- print ---------- */
+
+@page {
+  margin: 14mm;
+}
+
+@media print {
+  .page {
+    width: auto;
+    max-width: none;
+    padding: 0;
+  }
+
+  .hero,
+  .inventory {
+    display: none;
+  }
+
+  .disclaimer {
+    display: none;
+  }
+
+  .results {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .table-wrap {
+    overflow: visible;
+  }
+
+  .tier-table {
+    width: 100%;
+    min-width: 0;
+  }
+}

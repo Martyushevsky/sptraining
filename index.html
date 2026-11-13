@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SP Training Calculator</title>
+<meta name="description" content="Enter your beads, crystals, hologold and hololium to see how many units of each star tier you can afford.">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23ffffff' stroke='%23111111' stroke-width='2'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='18' fill='%23111111' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="page">
+  <header class="hero">
+    <h1>SP Training Calculator</h1>
+  </header>
+
+  <section class="inventory" aria-labelledby="inv-title">
+    <div class="section-head">
+      <h2 id="inv-title">Your Inventory</h2>
+    </div>
+
+    <div class="inventory-grid">
+      <!-- Item names come from the NAMES block at the top of app.js. -->
+      <div class="group group--funds">
+        <div class="funds-grid">
+          <div class="inv-row">
+            <label for="gold" data-name="gold">Gold</label>
+            <input id="gold" type="text" inputmode="numeric" autocomplete="off" value="0">
+          </div>
+          <div class="inv-row">
+            <label for="hololium" data-name="hololium">Hololium</label>
+            <input id="hololium" type="text" inputmode="numeric" autocomplete="off" value="0">
+          </div>
+        </div>
+      </div>
+
+      <div class="group">
+        <h3 data-name="beads">Beads</h3>
+
+        <div class="inv-row">
+          <label for="beadSmall" data-name="beadSmall">Small box</label>
+          <input id="beadSmall" type="text" inputmode="numeric" autocomplete="off" value="0">
+          <span class="mult" aria-hidden="true">x10</span>
+        </div>
+        <div class="inv-row">
+          <label for="beadMedium" data-name="beadMedium">Medium box</label>
+          <input id="beadMedium" type="text" inputmode="numeric" autocomplete="off" value="0">
+          <span class="mult" aria-hidden="true">x100</span>
+        </div>
+        <div class="inv-row">
+          <label for="beadLarge" data-name="beadLarge">Large box</label>
+          <input id="beadLarge" type="text" inputmode="numeric" autocomplete="off" value="0">
+          <span class="mult" aria-hidden="true">x300</span>
+        </div>
+        <div class="inv-row">
+          <label for="beadPink" data-name="beadPink">Pink</label>
+          <input id="beadPink" type="text" inputmode="numeric" autocomplete="off" value="0">
+          <span class="mult" aria-hidden="true"></span>
+        </div>
+        <div class="inv-row">
+          <label for="beadGreen" data-name="beadGreen">Green</label>
+          <input id="beadGreen" type="text" inputmode="numeric" autocomplete="off" value="0">
+          <span class="mult" aria-hidden="true"></span>
+        </div>
+        <div class="inv-row">
+          <label for="beadYellow" data-name="beadYellow">Yellow</label>
+          <input id="beadYellow" type="text" inputmode="numeric" autocomplete="off" value="0">
+          <span class="mult" aria-hidden="true"></span>
+        </div>
+
+        <p class="group-total">
+          <span>Total</span>
+          <span class="total-number"><strong id="beadTotal">--</strong></span>
+          <span class="total-unit" data-name="beads" data-case="lower">beads</span>
+          <span class="total-number">or <strong id="beadConverted">--</strong></span>
+          <span class="total-unit" data-name="crystals" data-case="lower">crystals</span>
+        </p>
+      </div>
+
+      <div class="group">
+        <h3 data-name="crystals">Crystals</h3>
+
+        <div class="inv-row">
+          <label for="crystalSmall" data-name="crystalSmall">Small box</label>
+          <input id="crystalSmall" type="text" inputmode="numeric" autocomplete="off" value="0">
+          <span class="mult" aria-hidden="true">x10</span>
+        </div>
+        <div class="inv-row">
+          <label for="crystalMedium" data-name="crystalMedium">Medium box</label>
+          <input id="crystalMedium" type="text" inputmode="numeric" autocomplete="off" value="0">
+          <span class="mult" aria-hidden="true">x100</span>
+        </div>
+        <div class="inv-row">
+          <label for="crystalLarge" data-name="crystalLarge">Large box</label>
+          <input id="crystalLarge" type="text" inputmode="numeric" autocomplete="off" value="0">
+          <span class="mult" aria-hidden="true">x300</span>
+        </div>
+        <div class="inv-row">
+          <label for="crystalPink" data-name="crystalPink">Pink</label>
+          <input id="crystalPink" type="text" inputmode="numeric" autocomplete="off" value="0">
+          <span class="mult" aria-hidden="true"></span>
+        </div>
+        <div class="inv-row">
+          <label for="crystalGreen" data-name="crystalGreen">Green</label>
+          <input id="crystalGreen" type="text" inputmode="numeric" autocomplete="off" value="0">
+          <span class="mult" aria-hidden="true"></span>
+        </div>
+        <div class="inv-row">
+          <label for="crystalYellow" data-name="crystalYellow">Yellow</label>
+          <input id="crystalYellow" type="text" inputmode="numeric" autocomplete="off" value="0">
+          <span class="mult" aria-hidden="true"></span>
+        </div>
+
+        <p class="group-total group-total--wide">
+          <span>Total</span>
+          <span class="total-number"><strong id="crystalTotal">--</strong></span>
+          <span class="total-unit" data-name="crystals" data-case="lower">crystals</span>
+          <span data-name-template="Total with {beads} converted">Total with beads converted</span>
+          <span class="total-number"><strong id="crystalAll">--</strong></span>
+          <span class="total-unit" data-name="crystals" data-case="lower">crystals</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="results" aria-labelledby="results-title">
+    <div class="section-head">
+      <h2 id="results-title">How many members you can train to a certain stage and which resource is the bottleneck</h2>
+    </div>
+
+    <div class="tiers" id="tiers"></div>
+
+    <section class="costs" aria-labelledby="costs-title">
+      <div class="section-head">
+        <h2 id="costs-title">Cost requirements</h2>
+      </div>
+      <div class="table-wrap" id="costs"></div>
+    </section>
+  </section>
+</main>
+
+<footer class="disclaimer">
+  <p>
+    This is an unofficial, fan-made training calculator for hololive Dreams and is not affiliated
+    with or endorsed by QualiArts Inc., COVER Corp., hololive production, hololive Dreams, or
+    any hololive talent. All game names, characters, and related marks belong to their respective
+    owners. No official artwork, logos, or music are used.
+  </p>
+</footer>
+
+<noscript>
+  <p class="noscript">This page needs JavaScript to run the spreadsheet formulas.</p>
+</noscript>
+
+<script src="app.js"></script>
+</body>
+</html>
